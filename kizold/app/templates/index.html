@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    {% load static %}
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" type="text/css" href="{% static 'css/style.css' %}"/>
+    <title>Kizöldítjük a Földet</title>
+</head>
+<body>
+    <main>
+        <header>
+            <h3>Kizöldítjük a Földet</h3>
+        </header>
+        <aside>
+            <form class="bejegy-form" method="POST">
+                {% csrf_token %}
+                {{form.as_p}}
+                <input type="submit" value="Küld">
+            </form>
+        </aside>
+        <aside>
+            <h3>Összpontszámok</h3>
+            {% if osszpontszamok %}
+            <table>
+                <tr>
+                    <th>Osztály</th>
+                    <th>Összpontszámok</th>
+                </tr>
+                {% for osszpontszam in osszpontszamok%}
+                <tr>
+                    {% for key, value in osztalyok %}
+                            {% if key == osszpontszam.osztaly_id %}
+                                <td>{{value}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{osszpontszam.osszpontszam}}</td>
+                      
+                </tr>
+                {% endfor %}
+            </table>
+            {% endif %}
+        </aside>
+        <article>
+            <h4>Eddigi bejegyzések</h4>
+            {% if bejegyzesek %}
+            <div>
+                <table class="center">
+                    <tr>
+                        <th>Osztály</th>
+                        <th>Tevékenység</th>
+                        <th>Pont</th>
+                        <th>Státusz</th>
+                    </tr>
+                    {% for bejegyzes in bejegyzesek %}
+                    <tr>
+                        {% for key, value in osztalyok %}
+                            {% if key == bejegyzes.osztaly_id %}
+                                <td>{{value}}</td>
+                            {% endif %}
+                        {% endfor %}
+                        <td>{{ bejegyzes.tevekenyseg_id }}</td>
+                        <td>{{ bejegyzes.tevekenyseg_id.pontszam }}</td>
+                        <td>{{ bejegyzes.allapot }}</td>
+                    </tr>
+             
+                    {% endfor %}
+                </table>
+                {% endif %}
+            </div>
+        </article>
+        <footer>
+            <p>@Pantl Alex Balázs</p>
+        </footer>
+    </main>
+</body>
+</html>

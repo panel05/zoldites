@@ -1,0 +1,53 @@
+main{
+    max-width: 75%;
+    margin: auto;
+    text-align: center;
+}
+
+aside, article{
+    max-width: 100%;
+    margin: auto;
+
+}
+
+.bejegy-form{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    border: 1px solid black;
+}
+
+table{
+    border-collapse: collapse;
+    border: 1px solid black;
+    margin:auto;
+}
+
+.center{
+    overflow-x: auto;
+}
+
+table td:nth-child(odd){
+    background-color: lightgrey;
+}
+
+table tr th, table tr td{
+    padding: 5px;
+}
+
+@media screen and(max-width:750px){
+    .bejegy-form{
+        flex-direction: column;
+        justify-content: flex-start;
+       
+    }
+    .bejegy-form select{
+        max-width: 100%;
+    }
+}
+
+@media  screen and(max-width:600px) {
+    table{
+        max-width: 100%;
+    }
+}
